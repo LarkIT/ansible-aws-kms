@@ -1,0 +1,4 @@
+# defaults/main.yml
+# Role default parameters
+---
+kms_grant_required: false

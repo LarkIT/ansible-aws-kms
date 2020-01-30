@@ -1,0 +1,27 @@
+
+# ansible-aws-kms/tasks/main.yml
+# Create customer managed KMS key
+---
+- name: Create KMS CMK
+  aws_kms:
+    alias: "{{ kms_cmk_name }}"
+    tags:
+      Name: "{{ kms_cmk_name }}"
+      Purpose: "{{ kms_cmk_purpose }}"
+
+- name: Lookup KMS key info
+  aws_kms_info:
+    filters:
+      alias: "{{ kms_cmk_name }}"
+  register: kms_key_info
+  when: kms_grant_required
+
+- name: Create KMS grants
+  aws_kms:
+    key_id: "{{ kms_key_info|json_query('keys[0].key_id') }}"
+    grants:
+      - name: "{{ kms_cmk_name }}"
+        grantee_principal: arn:aws:iam::{{ aws_account_id }}:{{ kms_grantee_principal_type }}/{{ kms_grantee_principal_name }}
+        operations: "{{ kms_grantee_operations }}"
+
+  when: kms_grant_required
