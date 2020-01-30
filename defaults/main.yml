@@ -2,3 +2,4 @@
 # Role default parameters
 ---
 kms_grant_required: false
+kms_cmk_state: present

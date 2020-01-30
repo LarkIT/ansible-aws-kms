@@ -5,6 +5,7 @@
 - name: Create KMS CMK
   aws_kms:
     alias: "{{ kms_cmk_name }}"
+    state: "{{ kms_cmk_state }}"
     tags:
       Name: "{{ kms_cmk_name }}"
       Purpose: "{{ kms_cmk_purpose }}"

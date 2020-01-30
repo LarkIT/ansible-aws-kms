@@ -9,6 +9,7 @@ This role is not dependent on any other roles
 | Variable | Required? | Default Value | Type | Description |
 |----------|-----------|---------------|------|-------------|
 | kms_cmk_name | Yes | N/A | String | KMS CMK name |
+| kms_cmk_state | No | present | String | Set to present to create or absent to destroy |
 | kms_cmk_purpose | Yes | N/A | String | KMS CMK purpose or description |
 | kms_grant_required | No | false | Boolean | Set to true to define a KMS Grant |
 | kms_grantee_operations | When kms_grant_required = true | N/A | String | The opreations the grantee is allowed to perform on the key |
