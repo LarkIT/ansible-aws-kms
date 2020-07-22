@@ -1,5 +1,7 @@
 # defaults/main.yml
 # Role default parameters
 ---
+kms_cmk_name: my-kms-cmk
+kms_cmk_purpose: Protect my stuff
 kms_grant_required: false
 kms_cmk_state: present
